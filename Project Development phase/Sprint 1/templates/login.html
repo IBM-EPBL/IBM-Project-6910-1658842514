@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loginr</title>
+<link rel="stylesheet" href="{{url_for('static',filename='/css.css')}}">
+<script src="https://kit.fontawesome.com/53fcd5c52a.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+
+    <div class="container" id="container">
+       
+        <div class="form-container sign-in-container">
+            <form action='/login' method="post">
+                <h1>Sign in</h1>
+                <div class="social-containder">
+                    <a href="#" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <span>or use your account</span>
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="newpassword" placeholder="password">
+                <button type="submit">sign in</button>
+                
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                               <p> {{ message }} </p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+
+
+            </form>
+
+
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+               
+                <div class="overlay-panel overlay-right">
+                   <h1> Expense Tracker</h1>
+                   <p>Tracking Monthly Expenses: The First Step to Money Success</p>
+                   
+                    <button class= "press" id="signUp"><a href={{url_for('Register')}}>Sign Up</a></button>
+               </div>
+           
+        </div>
+
+    </div>
+    
+
+    
+</body>
+</html>
