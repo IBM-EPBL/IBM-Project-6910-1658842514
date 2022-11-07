@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L Login & Register</title>
+<link rel="stylesheet" href="{{url_for('static',filename='/css.css')}}">
+<script src="https://kit.fontawesome.com/53fcd5c52a.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <h2> {{ message }} </h2>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="container" id="container">
+       <!---<div class="form-container sign-up-container">
+            <form action="#">
+                <h1>create Account</h1>
+                <div class="social-containder">
+                    <a href="#" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="password">
+                <button>sign up</button>
+
+
+
+
+
+            </form>
+        </div>-->
+        <div class="form-container sign-in-container">
+            <form action='/login' method="post">
+                <h1>Sign in</h1>
+                <div class="social-containder">
+                    <a href="#" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <span>or use your account</span>
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="newpassword" placeholder="password">
+                <button type="submit">sign in</button>
+
+
+
+            </form>
+
+
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+               <!--- <div class="overlay-panel overlay-left">
+                    <h1>Welcome To ET</h1>
+                    <p>Being in control of your money provides freedom</p>
+                    <button class= "press" id="signIn" ">Sign In</button>
+               </div>-->
+                <div class="overlay-panel overlay-right">
+                   <h1> Expense Tracker</h1>
+                   <p>Tracking Monthly Expenses: The First Step to Money Success</p>
+                   
+                    <button class= "press" id="signUp"><a href={{url_for('Register')}}>Sign Up</a></button>
+               </div>
+           
+        </div>
+
+    </div>
+    
+   <!--- <script>
+         const signUpButton = document.getElementById("signUp");
+         const signInButton = document.getElementById("signIn");
+         const container = document.getElementById("container");
+
+         signUpButton.addEventListener('click',()=>{
+            container.classList.add("right-panel-active");
+
+         })
+         signInButton.addEventListener('click',()=>{
+            container.classList.remove("right-panel-active");
+
+         })
+         
+
+         
+    </script>
+    
+    
+</body>
+</html>
