@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=Montserrat&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+  }
+  
+  header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: #e4e4e4;
+  }
+  
+  .logo {
+    margin-right: auto;
+    font-size: 25px;
+    color: rgb(229, 103, 61);
+    font-family: monospace;
+  }
+  
+  .nav__links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav__links a,
+  .cta,
+  .overlay__content a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: #060606;
+    text-decoration: none;
+  }
+  
+  .nav__links li {
+    padding: 0px 20px;
+  }
+  
+  .nav__links li a {
+    transition: all 0.3s ease 0s;
+  }
+  
+  .nav__links li a:hover {
+    color: #0088a9;
+  }
+  
+  .cta {
+    margin-left: 20px;
+    padding: 9px 25px;
+    background-color: rgb(255, 44, 44);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+  
+  .cta:hover {
+    background-color: rgba(0, 136, 169, 0.8);
+  }
+  
+  /* Mobile Nav */
+  
+  .menu {
+    display: none;
+  }
+  
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: #24252a;
+    overflow-x: hidden;
+    transition: all 0.5s ease 0s;
+  }
+  
+  .overlay--active {
+    width: 100%;
+  }
+  
+  .overlay__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay a {
+    padding: 15px;
+    font-size: 36px;
+    display: block;
+    transition: all 0.3s ease 0s;
+  }
+  
+  .overlay a:hover,
+  .overlay a:focus {
+    color: #0088a9;
+  }
+  .overlay .close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #edf0f1;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {
+      font-size: 20px;
+    }
+    .overlay .close {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .nav__links,
+    .cta {
+      display: none;
+    }
+    .menu {
+      display: initial;
+    }
+  }
+  .filter{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: .7;
+  }
+  
+  table{
+   /* position: absolute;*/
+    z-index: 2;
+  /*  left: 50%;
+    top: 50%;*/
+   /* transform: translate(-50%,-50%);*/
+    width: 60%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(32,32,32,.3);
+    background: #fafafa;
+    text-align: center;
+    margin-left: auto;
+    margin-right : auto;
+    margin-top: auto ;
+    margin-bottom: auto;
+  }
+  th,td{
+    padding: 12px 15px;
+
+  }
+  th{
+    background: #ff653ee8;
+    color: #fafafa;
+    text-transform: uppercase;
+    font-family: 'Cabin', sans-serif;
+  }
+  td{
+    font-family: 'open sana',sans-serif;
+  }
+  tr:nth-child(odd){
+    background-color: #eeeeee;
+  }
+
+  .flashmessages{
+    text-align: center;
+    background-color: #ff653ee8;
+    color: #fafafa;
+    font-size: 20px;
+    padding : 10px ;
+
+  }
+
+  .centertext{
+    text-align: center;
+    font-family: 'Cabin', sans-serif;
+    margin : 10px;
+    color: #ff653ee8;
+  }
+
+
+  .chart{
+    height: 500px;
+    width:600px;
+   
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
+  .btn{
+    font-family: "roboto",sans-serif;
+    font-size: 12px;
+    background: #ff7f5f;
+    width: 160px;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0.1 );
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow,transform;
+    margin:10px 10px 10px 10px ;
+
+
+}
+.btn:hover, .btn:focus, .btn:active{
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    -webkit-transform: scale(1.1);
+    transform:scale(1.1);
+}
+
+.centerdiv
+{
+  justify-content: center;
+  align-items: center;
+  display: flex
+  /*margin:25px;*/
+}
+
+  

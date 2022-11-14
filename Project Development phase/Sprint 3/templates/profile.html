@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Profile</title> 
+{% endblock %}
+
+{% block body %}
+<div class='container'>
+<h1>Profile</h1>
+<p>Welcome</p>
+</div>
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <h4> {{ message }} </h4>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div>
+    
+    <div>{{account.0}}</div>
+    <div>{{account.1}}</div>
+    <div>{{account.2}}</div>
+</div>
+<div>
+    <p>Current budget is {{budget.BUDGET}}</p>
+    <form name="form_login" action={{url_for('budget')}} method="post">
+        <div><label for="input_registration_name" class="form-label">New budgets</label>
+        <input type="number" name="budget" class="form-control" id="input_registration_name" required ></div>
+        <button type="submit" class="btn btn-primary" id="button_registration_susbmit" value='budgetchange' name ='submit'>Submit</button>
+        
+    </form>
+    <form name="password" action="{{url_for('changepassword')}}" method="post">
+        <div><label for="password">change password</label>
+        <input type="text" name="password" id="password" required ></div>
+        <button type="submit"   value='changepassword' name ='submit'>Submit</button>
+        
+ </form>
+</div>
+<a href={{url_for('dashboard')}}>Dashboard</a>
+{% endblock %}

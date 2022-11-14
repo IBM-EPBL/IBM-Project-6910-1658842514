@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Expenses</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='/css3.css')}}">
+            
+        
+    </head>
+    <body>
+
+      <form action="{{url_for('addexpense')}}" method="post">
+        
+        <h1>ADD Expenses</h1>
+        
+        <fieldset>
+          
+          
+          
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description" required="required">
+          
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" required="required">
+          
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" required="required">
+          
+          <label for="category">Category:</label>
+          <select id="category" name="category">
+            
+            <option selected hidden value='5'>Choose One</option>
+            <option value="1">Rent and EMI</option>
+            <option value="2">Savings</option>
+            <option value="3">Groceries</option>
+            <option value="4">Others</option>
+            
+            
+          </select>
+        
+        </fieldset>
+        
+       
+          
+        <button type="submit" value='addexpense' name ='submit' >Submit</button>
+        <span class='dashboardlink'><p><strong><i><a href="{{url_for('dashboard')}}" class="dashboardlink">Back to Dashboard</a></i></strong></p></span>
+        
+      </form>
+      
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modify Expenses</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='/css3.css')}}">
+            
+        
+    </head>
+    <body>
+
+      <form action="{{url_for('modifyexpense',id=id)}}" method="post">
+        
+        <h1>Modify Expense</h1>
+        
+        <fieldset>
+          
+          
+          
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description" value="{{transaction.DESCRIPTION}}" required="required">
+          
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" maxlength="50" value="{{transaction.AMOUNT}}" required="required">
+          
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" value="{{transaction.DATE}}" required="required">
+          
+          <label for="category">Category:</label>
+          <select id="category" name="category">
+            
+            <option selected  hidden value='5'>Choose One</option>
+            <option value="1">Rent and EMI</option>
+            <option value="2">Savings</option>
+            <option value="3">Groceries</option>
+            <option value="4">Others</option>
+            
+            
+          </select>
+        
+        </fieldset>
+        
+       
+          
+        <button type="submit" value='modifyexpense' name ='submit' >Submit</button>
+        <p><strong><i><a href="{{url_for('dashboard')}}" class="dashboardlink" >Back to Dashboard</a></i></strong></p>
+        
+      </form>
+      
+    </body>
+</html>
