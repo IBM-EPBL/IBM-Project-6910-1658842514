@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>About</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{url_for('static',filename='/css4.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="styleshee
+        t">
+        <link rel = "icon" href = "https://my-page1.s3.au-syd.cloud-object-storage.appdomain.cloud/abouticon.png" type = "image/x-icon">
+    </head>
+    <body>
+    	{% block body %} 
+    	{% endblock %}
+    </body>
+    <script>
+      window.watsonAssistantChatOptions = {
+        integrationID: "b0dd2bb9-926b-40f8-9dbd-2afe977fe09b", // The ID of this integration.
+        region: "au-syd", // The region your integration is hosted in.
+        serviceInstanceID: "b8eef28f-4168-4f13-80cf-7a5491d42c7c", // The ID of your service instance.
+        onLoad: function(instance) { instance.render(); }
+      };
+      setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+      });
+    </script>
+</html>

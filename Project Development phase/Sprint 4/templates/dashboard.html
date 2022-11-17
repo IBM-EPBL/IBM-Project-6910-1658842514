@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dashboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{url_for('static',filename='/css2.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+        <link rel = "icon" href = "https://my-page1.s3.au-syd.cloud-object-storage.appdomain.cloud/dashboardicon%20(1).png" type = "image/x-icon">
+    </head>
+    <body>
+        <header>
+            <h2 class="logo">Expense Tracker</h2>
+            <nav>
+                <ul class="nav__links">
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                    <li><a href="{{url_for('about')}}">About</a></li>
+                </ul>
+            </nav>
+            <a class="cta" href="{{url_for('profile')}}">Profile</a>
+            <p class="menu cta">Menu</p>
+        </header>
+        <div id="mobile__menu" class="overlay">
+            <a class="close">&times;</a>
+            <div class="overlay__content">
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="{{url_for('logout')}}">Logout</a>
+                <a href="{{url_for('about')}}">About</a>
+            </div>
+        </div>
+        
+        <!-- <div class="filter"></div> -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class= 'flashmessages'> <p> {{message}} </p> </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class= 'centertext' style='font-size: 25px;'><p>Total expenses is <b> Rs {{summation}} </b></p></div>
+        <div class= 'centertext' style='font-size: 25px;'><p>Budget is <b> {% if budget %} {{budget.BUDGET}} {% else %} Not Set {% endif %} </b> </p></div>
+        {% if budget %}<div class= 'centertext' style='font-size: 25px;'><p>Amount remaining in budget is <b>{{remaining}}</b> </p></div>{% endif %}
+        
+        <div class="centerdiv" >
+        <a class="btn" style="margin-top:25px;" href="{{url_for('addexpense')}}">Add expense</a>
+        </div>
+
+{% if transactions %}
+        <table id="table">
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th id="ignore">Action</th>
+            </tr>
+             
+{% for transaction in transactions %}
+            <tr>
+        
+                <td>{{ transaction.DATE }}</td>
+                <td>{{ transaction.DESCRIPTION }}</td>
+                <td>{{ transaction.AMOUNT }}</td>
+                <td>{{ transaction.CATEGORY }}</td>
+                <td id="ignore"><a href="/delete/{{transaction.TRANSACTION_ID}}">Delete</a>
+                <a href="/modify/{{transaction.TRANSACTION_ID}}">Modify</a></td>
+
+            </tr>
+        
+{% endfor%}
+        </table>
+        <div class="centerdiv" >
+        <input type="button" class="btn" style="border: none;" id = "button" value="Export To PDF" /> 
+        <button id="csv" style="border: none;" class="btn">TO CSV</button>   
+        </div>  
+{% endif%}
+               
+        
+
+{% if summation %}
+        <table style="margin-top: 50px;">
+            <tr>
+                <th>EMI and Rent</th>
+                <th>Savings</th>
+                <th>Groceries</th>
+                <th>Others</th>
+                <th>Not Set</th>
+                
+            </tr>
+            
+            <tr>
+        
+                <td>{{ total[0] }}</td>
+                <td>{{ total[1] }}</td>
+                <td>{{ total[2] }}</td>
+                <td>{{ total[3] }}</td>
+                <td>{{ total[4] }}</td>
+        
+            </tr>
+        
+        </table>
+
+{% endif%}
+
+ <!-- Chart -->       
+        <div id="chart" class='chart'></div>
+
+        
+
+        <script type="text/javascript" src="{{url_for('static',filename='/mobile.js')}}"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="{{url_for('static',filename='/tableHTMLExport.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+        
+    </body>
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+ <!-- Chart -->
+
+    <script type='text/javascript'>
+        
+        {% if summation %}
+        var graphs = {{graphJSON | safe}};
+        chart = document.getElementById('chart');
+        Plotly.newPlot(chart,graphs);
+        {% endif %}
+
+
+        button=document.getElementById('button');
+        console.log(button.value);
+
+        button.onclick = function(){
+        this.downloadingPDF = true;
+        const doc = new jsPDF();
+        doc.text('Transaction Details',25,9)
+        doc.autoTable({ html: '#table', theme: 'grid', 
+            columns: 
+         [
+          {header: '', dataKey: 'Date'},
+          {header: '', dataKey: 'Description'},
+          {header: '', dataKey: 'Amount'},
+          {header: '', dataKey: 'Category'},
+          
+        ],
+
+    });
+        
+        doc.save('month-{{month}}.pdf') 
+    };
+
+    $('#csv').on('click',function(){
+    $("#table").tableHTMLExport({type:'csv',filename:'month-{{month}}.csv',ignoreColumns:'#ignore'});
+  });
+
+    </script>
+
+</html>
