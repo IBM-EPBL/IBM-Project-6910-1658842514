@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskpetapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flaskpetapp
+  template:
+    metadata:
+      labels:
+        app: flaskpetapp
+    spec:
+      containers:
+      - name: flaskpetapp
+        image: jp.icr.io/pet-app/pet-app-rep:new
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000

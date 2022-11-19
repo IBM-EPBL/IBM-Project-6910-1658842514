@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+<header>
+            <h2 class="logo">Expense Tracker</h2>
+            <nav>
+                <ul class="nav__links">
+                   
+                   
+                    <li><a href="{{url_for('login')}}">Sign In</a></li>
+                    
+                </ul>
+            </nav>
+            <a class="cta" style="color: white;" href="{{url_for('Register')}}">Sign Up</a>
+            <p class="menu cta">Menu</p>
+        </header>
+        <div class="wrapper" style="margin-top:25px;">
+            <div class="title">
+                About
+            </div>
+           <p>Welcome,<br><br>
+
+            This Personal Expense Tracker tracks  individual budget which involves every one of the monetary choices and exercises that this application makes your life more straight forward by assisting you with dealing with your funds effectively. This  Personal tracker  application won't just assist you with planning and bookkeeping yet in addition give you supportive bits of knowledge about cash the executives.<br><br>
+
+            This application will request that clients add their costs and in light of their costs wallet equilibrium will be refreshed which will be noticeable to the client. Additionally, clients can get an examination of their consumption in graphical structures. They have a choice to put down a boundary for the sum to be utilized for that specific month assuming the breaking point is surpassed the client will be informed with an email alert.</p>
+        </div>
+
+
+{% endblock %}
